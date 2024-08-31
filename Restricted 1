@@ -1,0 +1,18 @@
+// Check if the user is already authenticated
+if (sessionStorage.getItem('authenticated') === 'true') {
+    window.location.href = 'restricted/restricted.html'; // Redirect to the restricted page if already authenticated
+}
+
+document.getElementById('auth-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const allowedEmails = ['allowed1@gmail.com', 'allowed2@gmail.com']; // Add the allowed Gmail accounts here
+    const userEmail = document.getElementById('email').value;
+
+    if (allowedEmails.includes(userEmail)) {
+        sessionStorage.setItem('authenticated', 'true'); // Store the session
+        window.location.href = 'restricted/restricted.html'; // Redirect to the restricted page
+    } else {
+        alert('Access denied. You are not authorized.');
+    }
+});
